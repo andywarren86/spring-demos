@@ -10,11 +10,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RootController {
 
+  public record RootModel(String foo, String bar){
+    public String blah() {
+      return "blah!";
+    }
+  }
+  
   @GetMapping("/")
   public String root(final Model model) {
     System.out.println("RootController.root()");
-    model.addAttribute("foo", "bar");
     System.out.println(model);
+
+    final RootModel rootModel = new RootModel( "foo1", "bar1" );
+    System.out.println(rootModel);
+
+    model.addAttribute("model", rootModel);
     return "root";
   }
 
