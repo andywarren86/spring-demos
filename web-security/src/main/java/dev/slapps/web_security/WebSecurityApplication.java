@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebSecurityApplication {
 
 	public static void main(String[] args) {
+		System.out.println("WebSecurityApplication.main()");
 		SpringApplication.run(WebSecurityApplication.class, args);
 	}
 
