@@ -29,4 +29,7 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+
+	// show std out when running tests
+	testLogging.showStandardStreams = true
 }
