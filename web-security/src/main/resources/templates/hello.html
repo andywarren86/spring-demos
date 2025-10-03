@@ -4,7 +4,13 @@
         <title>Hello World!</title>
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <h1>Hello <span th:remove="tag" th:text="${name}">...</span>!</h1>
         <p>Congratulations you have successfully authenticated with Spring Security.</p>
+        <p>user: <pre th:text="${user}">...</pre></p>
+        <p>name: <pre th:text="${name}">...</pre></p>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
     </body>
 </html>
