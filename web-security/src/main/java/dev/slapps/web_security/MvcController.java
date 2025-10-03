@@ -24,8 +24,8 @@ public class MvcController {
   @GetMapping("/hello")
   public ModelAndView hello(final Principal user, final ModelAndView mav) {
     System.out.println("HomeController.hello()");
-    System.out.println("User: " + user);
-    System.out.println(user.getClass().getName());
+    // System.out.println("User: " + user);
+    // System.out.println(user.getClass().getName());
 
     // if ( user instanceof UsernamePasswordAuthenticationToken token ) {
     // }
