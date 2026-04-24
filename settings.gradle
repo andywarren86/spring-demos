@@ -1,3 +1,4 @@
 rootProject.name = 'spring-demos'
 include 'jte'
 include 'web-security'
+include 'jpa-demo'
