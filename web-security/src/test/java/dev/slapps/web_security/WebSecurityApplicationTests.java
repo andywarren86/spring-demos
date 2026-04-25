@@ -8,11 +8,11 @@ import org.springframework.context.ApplicationContext;
 @SpringBootTest
 class WebSecurityApplicationTests {
 
-  @Autowired private ApplicationContext appContext;
+    @Autowired private ApplicationContext appContext;
 
-  @Test
-  void contextLoads() {
-    System.out.println("WebSecurityApplicationTests.contextLoads()");
-    System.out.println(appContext);
-  }
+    @Test
+    void contextLoads() {
+        System.out.println("WebSecurityApplicationTests.contextLoads()");
+        System.out.println(appContext);
+    }
 }

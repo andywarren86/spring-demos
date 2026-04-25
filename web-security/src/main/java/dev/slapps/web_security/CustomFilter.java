@@ -10,13 +10,12 @@ import java.io.IOException;
 
 public class CustomFilter implements Filter {
 
-  @Override
-  public void doFilter(
-      final ServletRequest request, final ServletResponse response, final FilterChain chain)
-      throws IOException, ServletException {
+    @Override
+    public void doFilter(
+            final ServletRequest request, final ServletResponse response, final FilterChain chain)
+            throws IOException, ServletException {
 
-    System.out.println("CustomFilter.doFilter()");
-    chain.doFilter(request, response);
-
-  }
+        System.out.println("CustomFilter.doFilter()");
+        chain.doFilter(request, response);
+    }
 }
