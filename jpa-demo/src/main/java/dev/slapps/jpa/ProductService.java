@@ -1,9 +1,7 @@
 package dev.slapps.jpa;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,32 +9,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProductService {
 
-    @Autowired private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @PersistenceContext private EntityManager entityManager;
-
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public ProductService(final ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    /** Insert a new product into the database. */
-    public Product insertProductViaRepo(
-            final String name, final String description, final Double price) {
+    public Product insertProduct(final String name, final String description, final Double price) {
         System.out.println("ProductService.insertProductViaRepo()");
 
         final Product product = new Product(name, description, price);
-        return productRepository.save(product);
+        System.out.println("Saving product: " + product);
+
+        final Product newProduct = productRepository.save(product);
+        System.out.println("Saved product: " + newProduct);
+
+        return newProduct;
     }
 
-    public Product insertProductViaSession(
-            final String name, final String description, final Double price) {
-        System.out.println("ProductService.insertProductViaSession()");
-        System.out.println(entityManager);
+    public List<Product> getAllProducts(final Sort sort) {
+        System.out.println("ProductService.getAllProducts()");
+        final List<Product> products = productRepository.findAll(sort);
+        System.out.println("Found " + products.size() + " products");
+        return products;
+    }
 
-        final Product product = new Product(name, description, price);
-        entityManager.persist(product);
-        System.out.println("Product inserted: " + product);
-
-        return product;
+    public List<Product> searchProducts(final String searchTerm) {
+        System.out.println("ProductService.searchProducts()");
+        final List<Product> products = productRepository.findByNameContainingIgnoreCase(searchTerm);
+        System.out.println(
+                "Found " + products.size() + " products matching search term: " + searchTerm);
+        return products;
     }
 }
