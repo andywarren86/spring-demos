@@ -1,11 +1,12 @@
-plugins {
-}
-
 description = 'JPA Spring Boot demo'
 
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.boot:spring-boot-dependencies:4.0.6'
+	}
+}
+
 dependencies {
-	// SB4 ?
-	// implementation 'org.springframework.boot:spring-boot-h2console'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.h2database:h2'
 
